@@ -1,3 +1,5 @@
+using PrimeiraApi.Rotas;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,9 +17,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.MapPessoaRotas();
 
-app.MapGet("/hello world", ()=> {
-    return "Hello world";
-});
 
 app.Run();
