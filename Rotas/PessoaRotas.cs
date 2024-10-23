@@ -20,7 +20,7 @@ namespace PrimeiraApi.Rotas
 
             app.MapGet("/pessoas/{nome}", (string nome)=> Pessoas.Find( x=>x.Nome == nome));
 
-            app.MapGet("/pessoa/{id}", (Guid id) => Pessoas.Find(x=>x.Id == id));
+            app.MapGet("/pessoa/{id}/{nome}", (Guid id, string nome) => Pessoas.Find(x=>x.Id == id));
         }
     }
 }
