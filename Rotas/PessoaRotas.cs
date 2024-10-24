@@ -24,7 +24,22 @@ namespace PrimeiraApi.Rotas
 
             app.MapPost("/pessoas", (Pessoa pessoa)=> 
             {
-                Pessoas.Add(pessoa); return pessoa;
+                if (pessoa.Nome != "Lucas")
+
+                    return Results.BadRequest( new {message = "o nome esta errado "});
+
+                Pessoas.Add(pessoa); 
+                return Results.Ok(pessoa);
+            });
+
+            app.MapPut("/pessoas/{id}", (Guid id, Pessoa pessoa)=>
+             {
+                var encontrado = Pessoas.Find(x => x.Id == id);
+                if (encontrado == null)
+                return Results.NotFound();
+
+                encontrado.Nome = pessoa.Nome;
+                return Results.Ok(encontrado);
             });
         }
     }
