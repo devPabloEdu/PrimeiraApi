@@ -41,6 +41,15 @@ namespace PrimeiraApi.Rotas
                 encontrado.Nome = pessoa.Nome;
                 return Results.Ok(encontrado);
             });
+
+            app.MapDelete("/pessoas/{id}", (Guid id)=> {
+                var pessoa = Pessoas.Find(x => x.Id == id);
+                if (pessoa == null)
+                return Results.NotFound();
+
+                Pessoas.Remove(pessoa);
+                return Results.Ok(new {message = "Pessoa removida com sucesso"});
+            });
         }
     }
 }
